@@ -1,27 +1,30 @@
 * {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
+
 html {
-  margin: 0 0 0 20px;
-  height: 100%;
+	margin: 0 0 0 20px;
+	height: 100%;
 }
 
 /* Use display:table and display:table-cell
 so that we can use vertical-align:middle */
 body {
-  background: #022f8c /*url('images/icon.png') right top no-repeat*/;
-  font-family: Calibri,sans-serif;
-  color: #fff;
-  display: table;
-  height: 100%;
-  width: 100%;
+	background: #022f8c right top no-repeat;
+	font-family: Calibri, sans-serif;
+	color: #fff;
+	display: table;
+	height: 100%;
+	width: 100%;
 }
 
+img.logo, img.logo-100, img.logo-80, img.logo-50 {
+	display: none;
+}
 
 h1 {
-	font-size: 1.5em;
-	width: 250px;
+	font-size: 1.4em;
 }
 
 .blue {
@@ -56,4 +59,77 @@ div ul li.inline {
 li.br {
 	list-style: none;
 	clear: both;
+}
+
+@media only screen and (min-width:50px) and (max-width:119px) {
+	* {
+		display: none;
+		margin: 0;
+		padding: 0;
+	}
+	html, body, img.logo-50 {
+		display: block;
+		margin: 0;
+		padding: 0;
+	}
+		
+}
+
+@media only screen and (min-width:120px) and (max-width:160px) {
+	* {
+		margin: 0;
+		padding: 0;
+		display: none;
+	}
+	html, body, img.logo-80 {
+		margin: 0;
+		padding: 0;
+		display: block;
+	}
+		
+}
+
+
+@media only screen and (min-width:161px) and (max-width:229px) {
+	html {
+		margin-left: 5px;
+	}
+	.mini {
+		width: 120px;
+	}
+	.icons {
+		width: 120px;
+	}
+}
+
+@media only screen and (min-width:230px) and (max-width:359px) {
+	.icons {
+		width: 150px;
+	}
+}
+@media only screen and (min-width:169px) and (max-width:249px) {
+	img.logo-50 {
+		display: block;
+	}
+}
+
+@media only screen and (min-width:250px) and (max-width:299px) {
+	img.logo-80 {
+		display: block;
+	}
+}
+@media only screen and (min-width:300px) and (max-width:349px) {
+	img.logo-100 {
+		display: block;
+	}
+}
+@media only screen and (min-width:360px) and (max-width:425px) {
+	.icons {
+		width: 200px;
+	}
+}
+@media only screen and (min-width:350px) {
+	img.logo {
+		display: block;
+	}
 }

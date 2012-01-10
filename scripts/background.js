@@ -47,7 +47,7 @@ window.addEventListener('load', function() {
 					ul = $('<ul></ul>');
 					$('a', e).each(function (j, e) {
 						if (j == 0) {
-							div[i].append('<h1>'+this.innerHTML+'</h1>');
+							div[i].append('<h1>'+this.innerHTML.split(' ищут').join('')+'</h1>');
 						} else if (j == 1) {
 						} else {
 							if (this.className) {
@@ -102,5 +102,4 @@ window.addEventListener('load', function() {
 
 	loadFeed();
 	intervalId = setInterval(loadFeed, feedIntreval*1000);
-
 }, false);
