@@ -41,28 +41,28 @@ window.addEventListener('load', function() {
 			title: 'Поиск',
 			url: 'http://wowraider.ru/splash.cdiml',
 			func: function (text) {
-				var body = $('<div></div>'), div = null,ul = null;
+				var body = $('<div class="search"></div>'), div = [],ul = null;
 				$('.widget.mini', text).each(function (i, e) {
-					div = $('<div class="mini"></div>')
+					div[i] = $('<div class="mini"></div>');
 					ul = $('<ul></ul>');
-					$('a', e).each(function (i, e) {
-						if (i == 0) {
-							div.append('<h1>'+this.innerHTML+'</h1>');
-						} else if (i == 1) {
+					$('a', e).each(function (j, e) {
+						if (j == 0) {
+							div[i].append('<h1>'+this.innerHTML+'</h1>');
+						} else if (j == 1) {
 						} else {
 							if (this.className) {
 								ul.append($('<li class="inline"></li>').html('<img src="/images/wowicons/class/'+this.className.split(' cl')[1]+'.gif">' + this.innerHTML));
-								if (i == 7) {
-									ul.append($('<li class="br"></li>'))
-								}
+								ul.addClass('icons');
 							} else {
 								ul.append($('<li></li>').html(this.innerHTML));
 							}
 						}
 					});
-					div.append(ul);
-					body.append(div);
+					div[i].append(ul);
 				});
+				body.append(div[0]);
+				body.append(div[2]);
+				body.append(div[1]);
 				return body;
 			}
 		}
@@ -95,8 +95,8 @@ window.addEventListener('load', function() {
 		xhr.open('GET', 'http://wowraider.ru/splash.cdiml', true);
 		xhr.onreadystatechange = function() {
 			if (this.readyState !== 4) return false;
-			$('body').html(feedsOptions[currentFeed].func(this.responseText));
-		}
+			$('output').html(feedsOptions[currentFeed].func(this.responseText));
+		};
 		xhr.send(null);
 	}
 

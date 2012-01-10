@@ -1,31 +1,47 @@
 * {
-  margin: 0 0 0 5px;
+  margin: 0;
   padding: 0;
 }
 html {
+  margin: 0 0 0 20px;
   height: 100%;
 }
 
 /* Use display:table and display:table-cell
 so that we can use vertical-align:middle */
 body {
-  background: #022f8c url('images/icon.png') right top no-repeat;
+  background: #022f8c /*url('images/icon.png') right top no-repeat*/;
   font-family: Calibri,sans-serif;
   color: #fff;
   display: table;
   height: 100%;
   width: 100%;
 }
+
+
 h1 {
 	font-size: 1.5em;
+	width: 250px;
 }
 
 .blue {
 	color: #00C0FF;
 }
 
+div.search {
+	float: left;
+}
+
 .mini {
 	clear: both;
+}
+
+.mini ul {
+	list-style-position: inside;
+}
+
+ul.icons {
+	max-width: 250px;
 }
 
 div ul li.inline {
