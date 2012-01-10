@@ -1,11 +1,12 @@
 window.addEventListener('load', function() {
 	var currentFeed = widget.preferences['feed'] || 'news';
-	var feedIntreval = widget.preferences['interval'] || 60;
+	var feedIntreval = widget.preferences['interval'] || 3600;
 	var intervalId = null;
 	addEventListener( 'storage', function () {
 		currentFeed = widget.preferences['feed'] || 'news';
 		loadFeed();
-		feedIntreval = widget.preferences['interval'] || 60;
+		feedIntreval = widget.preferences['interval'] || 3600;
+
 		if (intervalId) {
 			clearInterval(intervalId);
 			intervalId = setInterval(loadFeed, feedIntreval*1000);
@@ -27,7 +28,7 @@ window.addEventListener('load', function() {
 	intervalId = setInterval(loadFeed, feedIntreval*1000);
 
 	var feedsOptions = {
-	'news': function (text) {
+		'news': function (text) {
 			var body = $('<div class="news"></div>'), ul = $('<ul></ul>');
 			$('.widget.news a', text).each(function (i, e) {
 		        if (i == 0) {
@@ -65,6 +66,9 @@ window.addEventListener('load', function() {
 			        } else {
 						if (this.className) {
 							ul.append($('<li class="inline"></li>').html('<img src="/images/wowicons/class/'+this.className.split(' cl')[1]+'.gif">' + this.innerHTML));
+							if (i == 7) {
+								ul.append($('<li class="br"></li>'))
+							}
 						} else {
 							ul.append($('<li></li>').html(this.innerHTML));
 						}

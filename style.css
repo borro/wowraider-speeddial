@@ -25,11 +25,19 @@ h1 {
 }
 
 .mini {
-	float: left;
+	clear: both;
 }
+
 div ul li.inline {
 	margin: 0;
 	padding: 0;
-	display: inline;
+	float: left;
+	width: 50px;
 	white-space: nowrap;
+	list-style: none;
+}
+
+li.br {
+	list-style: none;
+	clear: both;
 }

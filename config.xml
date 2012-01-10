@@ -9,4 +9,5 @@
     </feature>
 	<access origin="http://wowraider.ru"/>
 	<preference name="feed" value="news" />
+	<preference name="interval" value="3600" />
 </widget>
