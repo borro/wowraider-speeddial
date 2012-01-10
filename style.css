@@ -9,7 +9,7 @@ html {
 /* Use display:table and display:table-cell
 so that we can use vertical-align:middle */
 body {
-  background: #022f8c url('images/icon_64.png') right top no-repeat;
+  background: #022f8c url('images/icon.png') right top no-repeat;
   font-family: Calibri,sans-serif;
   color: #fff;
   display: table;
