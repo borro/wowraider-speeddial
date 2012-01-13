@@ -84,7 +84,7 @@ function parseLF(type, data) {
 	for (var i = 0, maxi = data.data.length; i < maxi; i++) {
 		body.append(
 			'<div><img src="/images/wowicons/class/'+data.data[i].classid+'.gif" alt="'+data.data[i].title+'">'
-			+ '<span style="color:#'+data.data[i].classcolor+';">'+data.data[i].number+'</span></div>'
+			+ ' — <span style="color:#'+data.data[i].classcolor+';">'+data.data[i].number+'</span></div>'
 		);
 	}
 	return body;

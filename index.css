@@ -17,6 +17,7 @@ body {
 	display: table;
 	height: 100%;
 	width: 100%;
+	font-size: 0.8em;
 }
 
 a {
@@ -40,6 +41,23 @@ h1 {
 
 .blues, .blues a {
 	color: #00C0FF;
+}
+
+.plf table {
+	width: 60%;
+}
+.plf td {
+	padding: 1px 5px;
+}
+
+.glf, .slf {
+	 overflow: hidden;
+}
+
+.glf div, .slf div {
+	float: left;
+	font-weight: bold;
+	width: 58px;
 }
 
 div.search {
