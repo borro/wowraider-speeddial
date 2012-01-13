@@ -11,7 +11,7 @@ html {
 /* Use display:table and display:table-cell
 so that we can use vertical-align:middle */
 body {
-	background: #022f8c right top no-repeat;
+	background: #022f8c;
 	font-family: Calibri, sans-serif;
 	color: #fff;
 	display: table;
@@ -33,16 +33,12 @@ div.gradient
 	background-image: -o-linear-gradient(top,  rgba(255, 255, 255, 0),  rgba(2, 47, 140, 1));
 }
 
-img.logo, img.logo-100, img.logo-80, img.logo-50 {
-	display: none;
-}
-
 h1 {
 	padding-left: 10px;
 	font-size: 1.4em;
 }
 
-.blue {
+.blues, .blues a {
 	color: #00C0FF;
 }
 
@@ -50,105 +46,6 @@ div.search {
 	float: left;
 }
 
-.mini {
-	clear: both;
-}
-
 ul {
 	padding-left: 20px;
-}
-
-.mini ul {
-	list-style-position: inside;
-}
-
-ul.icons {
-	max-width: 250px;
-}
-
-div ul li.inline {
-	margin: 0;
-	padding: 0;
-	float: left;
-	width: 50px;
-	white-space: nowrap;
-	list-style: none;
-}
-
-li.br {
-	list-style: none;
-	clear: both;
-}
-
-@media only screen and (min-width:50px) and (max-width:119px) {
-	* {
-		display: none;
-		margin: 0;
-		padding: 0;
-	}
-	html, body, img.logo-50 {
-		display: block;
-		margin: 0;
-		padding: 0;
-	}
-		
-}
-
-@media only screen and (min-width:120px) and (max-width:160px) {
-	* {
-		margin: 0;
-		padding: 0;
-		display: none;
-	}
-	html, body, img.logo-80 {
-		margin: 0;
-		padding: 0;
-		display: block;
-	}
-		
-}
-
-
-@media only screen and (min-width:161px) and (max-width:229px) {
-	ul {
-		padding: 0;
-	}
-	.mini {
-		width: 120px;
-	}
-	.icons {
-		width: 120px;
-	}
-}
-
-@media only screen and (min-width:230px) and (max-width:359px) {
-	.icons {
-		width: 150px;
-	}
-}
-@media only screen and (min-width:169px) and (max-width:249px) {
-	img.logo-50 {
-		display: block;
-	}
-}
-
-@media only screen and (min-width:250px) and (max-width:299px) {
-	img.logo-80 {
-		display: block;
-	}
-}
-@media only screen and (min-width:300px) and (max-width:349px) {
-	img.logo-100 {
-		display: block;
-	}
-}
-@media only screen and (min-width:360px) and (max-width:425px) {
-	.icons {
-		width: 200px;
-	}
-}
-@media only screen and (min-width:350px) {
-	img.logo {
-		display: block;
-	}
 }
