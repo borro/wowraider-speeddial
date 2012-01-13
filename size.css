@@ -58,6 +58,9 @@ img.logo, img.logo-100, img.logo-80, img.logo-50 {
 	img.logo-50 {
 		display: block;
 	}
+	div.member {
+		padding-right: 2px;
+	}
 }
 
 @media only screen and (min-width:250px) and (max-width:299px) {

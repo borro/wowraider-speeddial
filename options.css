@@ -36,6 +36,10 @@ footer {
   box-shadow: 0 -1px rgba(0,0,0,0.15);
 }
 
+p {
+	margin: 5px 0;
+}
+
 h1 {
   margin: 0;
   font-size: 24px;

@@ -5,9 +5,10 @@
 	<author href="http://aggardo.ru/">Borro</author>
 	<icon src="images/icon.png"/>
     <feature name="opera:speeddial" required="true">
-        <param name="url" value="http://wowraider.ru/"/>
+        <param name="url" value="http://wowraider.ru"/>
     </feature>
-	<access origin="http://wowraider.ru"/>
+    <feature name="opera:share-cookies" required="false"/>
+	<access origin="http://wowraider.ru" subdomains="true"/>
 	<preference name="feed" value="news" />
 	<preference name="interval" value="3600" />
 </widget>

@@ -31,6 +31,9 @@ var feedsParsers = {
 	streams: function (data) {
 		return parseFeeds('streams', data);
 	},
+	posts:  function (data) {
+		return parseFeeds('streams', data);
+	},
 	'blues:ru': function (data) {
 		return parseFeeds('blues:ru', data);
 	}, 
