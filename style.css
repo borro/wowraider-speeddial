@@ -4,7 +4,7 @@
 }
 
 html {
-	margin: 0 0 0 20px;
+	margin: 0;
 	height: 100%;
 }
 
@@ -19,11 +19,21 @@ body {
 	width: 100%;
 }
 
+div.gradient
+{
+	width: 100%;
+	position: absolute;
+	bottom: 0px;
+	height: 20px;
+	background-image: -o-linear-gradient(top,  rgba(255, 255, 255, 0),  rgba(2, 47, 140, 1));
+}
+
 img.logo, img.logo-100, img.logo-80, img.logo-50 {
 	display: none;
 }
 
 h1 {
+	padding-left: 10px;
 	font-size: 1.4em;
 }
 
@@ -37,6 +47,10 @@ div.search {
 
 .mini {
 	clear: both;
+}
+
+ul {
+	padding-left: 20px;
 }
 
 .mini ul {
@@ -91,8 +105,8 @@ li.br {
 
 
 @media only screen and (min-width:161px) and (max-width:229px) {
-	html {
-		margin-left: 5px;
+	ul {
+		padding: 0;
 	}
 	.mini {
 		width: 120px;
