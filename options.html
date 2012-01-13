@@ -1,175 +1,202 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="options.css">
-  <title id="widget-title">Opera Extensions | Name of Extension</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="options.css">
+	<title id="widget-title">Opera Extensions | Name of Extension</title>
 </head>
 <body>
-  <header>
-    <img src="images/icon.png">
-    <h1 id="widget-name">WoW Raider Speed Dial Extension</h1>
-    <h2>Сделал <a href="http://aggardo.ru/">Borro</a></h2>
-  </header>
+<header>
+	<img src="images/icon.png">
+	<h1 id="widget-name">WoW Raider Speed Dial Extension</h1>
+	<h2>Сделал <a href="http://aggardo.ru/">Borro</a></h2>
+</header>
 
-  <section>
-	  <h3>Что показывать?</h3>
-      <fieldset>
-        <p>
-          <input name="feed" id="radio1" value="news" type="radio">
-          <label for="radio1">Новости</label>
-        </p>
-        <p>
-          <input name="feed" id="radio2" value="blue" type="radio">
-          <label for="radio2">Синие посты</label>
-        </p>
-        <p>
-          <input name="feed" id="radio3" value="search" type="radio">
-          <label for="radio3">Ищу гильдию/статик</label>
-        </p>
-      </fieldset>
-	  <h3>Интервал</h3>
-      <fieldset>
-	      <p>
-	          <select name="interval" id="interval">
-		          <option value="60">Раз в минуту</option>
-		          <option value="600">Раз в 10 минут</option>
-		          <option value="1800">Раз в полчаса</option>
-		          <option value="3600">Раз в час</option>
-		          <option value="7200">Раз в 2 часа</option>
-		          <option value="10800">Раз в 3 часа</option>
-		          <option value="21600">Раз в 6 часов</option>
-	          </select>
-	      </p>
+<section>
+<!--
+#  news - news list
+#  blues:[ru|en]:[bluestart] - blueposts on specified language and only bluestarters if specified
+#  blogs - blogsphere list
+#  posts - last posts includes news, new streams, posts, blogs < 3 hours
+#  comments - last comments
+#  streams - streams list
+#  questions - questions
+#  member - member information, new messages counter atm
+-->
+	<h3>Что показывать?</h3>
+	<fieldset>
+		<p>
+			<input name="feed" id="checkbox1" value="news" type="checkbox">
+			<label for="checkbox1">Новости</label>
+		</p>
+		<p>
+			<input name="feed" id="checkbox2" value="blues:ru" type="checkbox">
+			<label for="checkbox2">Синие посты</label>
+		</p>
+		<p>
+			<input name="feed" id="checkbox3" value="blogs" type="checkbox">
+			<label for="checkbox3">Блоги</label>
+		</p>
+		<p>
+			<input name="feed" id="checkbox4" value="posts" type="checkbox">
+			<label for="checkbox4">Новости, Новые стримы, Сообщения, Блоги</label>
+		</p>
+		<p>
+			<input name="feed" id="checkbox5" value="comments" type="checkbox">
+			<label for="checkbox5">Комментарии</label>
+		</p>
+		<p>
+			<input name="feed" id="checkbox6" value="streams" type="checkbox">
+			<label for="checkbox6">Стримы</label>
+		</p>
+		<p>
+			<input name="feed" id="checkbox7" value="questions" type="checkbox">
+			<label for="checkbox7">Вопросы</label>
+		</p>
+		<p>
+			<input name="feed" id="checkbox8" value="questions" type="checkbox">
+			<label for="checkbox8">Личный кабинет</label>
+		</p>
+	</fieldset>
+	<h3>Интервал</h3>
+	<fieldset>
+		<p>
+			<select name="interval" id="interval">
+				<option value="60">Раз в минуту</option>
+				<option value="600">Раз в 10 минут</option>
+				<option value="1800">Раз в полчаса</option>
+				<option value="3600">Раз в час</option>
+				<option value="7200">Раз в 2 часа</option>
+				<option value="10800">Раз в 3 часа</option>
+				<option value="21600">Раз в 6 часов</option>
+			</select>
+		</p>
+	</fieldset>
+</section>
 
-      </fieldset>
-
-
-  </section>
-
-  <footer>
-    <p>Powered by the Opera Browser</p>
-  </footer>
+<footer>
+	<p>Powered by the Opera Browser</p>
+</footer>
 
 <script>
 addEventListener('DOMContentLoaded', function() {
 	// storage
-    var storage = widget.preferences;
+	var storage = widget.preferences;
 	// glue for multiple values ( checkbox, select-multiple )
-    var glue    = '\n';
-    // get the FORM elements
-    var formElements = document.querySelectorAll('input,select');
-    // list of FORM elements
-    var skip            = hash('hidden,submit,image,reset,button');
-    var multipleValues  = hash('checkbox,select-multiple');
-    var checkable       = hash('checkbox,radio');
+	var glue    = ',';
+	// get the FORM elements
+	var formElements = document.querySelectorAll('input,select');
+	// list of FORM elements
+	var skip            = hash('hidden,submit,image,reset,button');
+	var multipleValues  = hash('checkbox,select-multiple');
+	var checkable       = hash('checkbox,radio');
 
-    // string to hash
-    function hash(str, glue)
-    {
-        var obj = {};
-        var tmp = str.split(glue || ',');
+	// string to hash
+	function hash(str, glue)
+	{
+		var obj = {};
+		var tmp = str.split(glue || ',');
 
-        while(tmp.length) {
-	        obj[tmp.pop()] = true;
-        }
+		while(tmp.length) {
+			obj[tmp.pop()] = true;
+		}
 
-        return obj;
-    }
-
-
-    // walk the elements and apply a callback method to them
-    function walkElements(callback)
-    {
-        var obj = [];
-        for(var i = 0, element = null; element = formElements[i++]; ) {
-            // skip the element if it has no name or is of a type with no useful value
-            var type = element.type.toLowerCase();
-            var name = element.name || '';
-            if (skip[type] === true || name == '') continue;
-
-            var tmp = callback(element, name, type);
-            if (tmp != null) {
-                obj.push( tmp );
-            }
-        }
-        return obj;
-    }
+		return obj;
+	}
 
 
-    // listener for element changes
-    function changedElement( e )
-    {
-        var element = e.currentTarget || e;
-        var type    = element.type.toLowerCase();
-        var name    = element.name || '';
+	// walk the elements and apply a callback method to them
+	function walkElements(callback)
+	{
+		var obj = [];
+		for(var i = 0, element = null; element = formElements[i++]; ) {
+			// skip the element if it has no name or is of a type with no useful value
+			var type = element.type.toLowerCase();
+			var name = element.name || '';
+			if (skip[type] === true || name == '') continue;
 
-        var value   = multipleValues[type] !== true ? element.value : walkElements(function(e, n, t) {
+			var tmp = callback(element, name, type);
+			if (tmp != null) {
+				obj.push( tmp );
+			}
+		}
+		return obj;
+	}
+
+
+	// listener for element changes
+	function changedElement( e )
+	{
+		var element = e.currentTarget || e;
+		var type    = element.type.toLowerCase();
+		var name    = element.name || '';
+
+		var value   = multipleValues[type] !== true ? element.value : walkElements(function(e, n, t) {
 			if (n == name && e.options) {
 				var tmp = [];
-                for ( var j = 0,option = null; option = e.options[j++]; ) {
-                        if (option.selected) {
-                            tmp.push( option.value );
-                        }
-                    }
-                    return tmp.join( glue );
-                } else if (n == name && checkable[t] === true && e.checked) {
-                    return e.value;
-                }
-            }
-        ).join(glue);
+				for ( var j = 0,option = null; option = e.options[j++]; ) {
+						if (option.selected) {
+							tmp.push( option.value );
+						}
+					}
+					return tmp.join( glue );
+				} else if (n == name && checkable[t] === true && e.checked) {
+					return e.value;
+				}
+			}
+		).join(glue);
 
-        // set value
-        storage.setItem( name, value );
-    }
-
-
-
-    // set the textContent of an element
-    function setText(id, txt)
-    {
-        var e = document.getElementById(id);
-        if (e) {
-            e.textContent = txt;
-        }
-    }
+		// set value
+		storage.setItem( name, value );
+	}
 
 
-    // populate the title, name, author, ...
-    setText('widget-title', widget.name);
-    setText('widget-name', widget.name);
-    setText('widget-author', widget.author);
+
+	// set the textContent of an element
+	function setText(id, txt)
+	{
+		var e = document.getElementById(id);
+		if (e) {
+			e.textContent = txt;
+		}
+	}
 
 
-    // walk and set the elements accordingly to the storage
-    walkElements(function(element, name, type) {
-            var value       = storage[name] !== undefined ? storage.getItem(name) : element.value;
-            var valueHash   = hash(value, glue);
-
-            if (element.selectedOptions) {
-                // 'select' element
-                for (var j = 0, option = null; option = element.options[j++]; ) {
-                    option.selected = valueHash[option.value]===true;
-                }
-            } else if ( checkable[type] === true ) {
-                // 'checkable' element
-                element.checked = valueHash[element.value]===true;
-            } else {
-                // any other kind of element
-                element.value = value;
-            }
+	// populate the title, name, author, ...
+	setText('widget-title', widget.name);
+	setText('widget-name', widget.name);
+	setText('widget-author', widget.author);
 
 
-            // set the widget.preferences to the value of the element if it was undefined
-            // YOU MAY NOT WANT TO DO THIS
-            if (storage[name] == undefined) {
-                changedElement(element);
-            }
+	// walk and set the elements accordingly to the storage
+	walkElements(function(element, name, type) {
+			var value       = storage[name] !== undefined ? storage.getItem(name) : element.value;
+			var valueHash   = hash(value, glue);
 
-            // listen to changes
-            element.addEventListener('change', changedElement, true);
-        }
-    );
+			if (element.selectedOptions) {
+				// 'select' element
+				for (var j = 0, option = null; option = element.options[j++]; ) {
+					option.selected = valueHash[option.value]===true;
+				}
+			} else if ( checkable[type] === true ) {
+				// 'checkable' element
+				element.checked = valueHash[element.value]===true;
+			} else {
+				// any other kind of element
+				element.value = value;
+			}
+
+
+			// set the widget.preferences to the value of the element if it was undefined
+			// YOU MAY NOT WANT TO DO THIS
+			if (storage[name] == undefined) {
+				changedElement(element);
+			}
+
+			// listen to changes
+			element.addEventListener('change', changedElement, true);
+		}
+	);
 
 }, false);
 </script>
