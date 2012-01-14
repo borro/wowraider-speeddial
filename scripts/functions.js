@@ -28,6 +28,9 @@ var feedsParsers = {
 	questions: function (data) {
 		return parseFeeds('questions', data);
 	},
+	comments: function (data) {
+		return parseFeeds('streams', data);
+	}, 
 	streams: function (data) {
 		return parseFeeds('streams', data);
 	},
