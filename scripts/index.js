@@ -28,6 +28,7 @@ window.addEventListener('load', function() {
 	function getContent()
 	{
 		ajaxGet('http://wowraider.ru/common/api.cdiml?data='+feeds.join(','), function (data) {
+			var hideMember = true;
 			data = $.parseJSON(data);
 			content = {};
 			for (var name in data) if (data.hasOwnProperty(name)) {
@@ -38,12 +39,14 @@ window.addEventListener('load', function() {
 						data: feedsParsers[name](data[name])
 					};
 				} else if (name == 'member'){
+					hideMember = false;
 					$('.member').show();
 					$('#newmessages').text(data[name].data[0].newmessages);
 					$('#online_status span').hide();
 					$('#online_status '+(data[name].data[0].online ? '.online' : '.offline')).show();
 				}
 			}
+			if (hideMember) $('.member').hide();
 		});
 	}
 
