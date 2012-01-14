@@ -67,9 +67,8 @@ var feedsParsers = {
 
 function initElements(type, data)
 {
-	var body = $('<div class="'+type.split(':').join(' ')+'"></div>');
-	body.append('<h1>'+data.title+'</h1>');
-	return body;
+	return $('<div class="'+type.split(':').join(' ')+'"></div>')
+		.append('<h1>'+data.title+'</h1>');
 }
 
 function parseFeeds(type, data) {
@@ -81,17 +80,16 @@ function parseFeeds(type, data) {
 	} else {
 		ul.append('<li>нет данных</li>');
 	}
-	body.append(ul);
-	return body;
+	return body.append(ul);
 }
 
 function parseLF(type, data) {
-	var body = initElements(type, data);
+	var body = initElements(type, data), div = $('<div class="content"></div>');
 	for (var i = 0, maxi = data.data.length; i < maxi; i++) {
-		body.append(
+		div.append(
 			'<div><img src="/images/wowicons/class/'+data.data[i].classid+'.gif" alt="'+data.data[i].title+'">'
 			+ ' — <span style="color:#'+data.data[i].classcolor+';">'+data.data[i].number+'</span></div>'
 		);
 	}
-	return body;
+	return body.append(div);
 }

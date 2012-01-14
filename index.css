@@ -57,7 +57,7 @@ div.member {
 }
 
 h1 {
-	padding-left: 10px;
+	padding-left: 5px;
 	font-size: 1.4em;
 }
 
@@ -75,11 +75,14 @@ h1 {
 .glf, .slf {
 	 overflow: hidden;
 }
+.glf .content, .slf .content {
+	padding-left: 5px;
+}
 
-.glf div, .slf div {
+.glf .content div, .slf .content div {
 	float: left;
 	font-weight: bold;
-	width: 58px;
+	width: 55px;
 }
 
 div.search {

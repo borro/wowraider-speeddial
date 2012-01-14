@@ -41,19 +41,8 @@ img.logo, img.logo-100, img.logo-80, img.logo-50 {
 	ul {
 		padding: 0;
 	}
-	.mini {
-		width: 120px;
-	}
-	.icons {
-		width: 120px;
-	}
 }
 
-@media only screen and (min-width:230px) and (max-width:359px) {
-	.icons {
-		width: 150px;
-	}
-}
 @media only screen and (min-width:169px) and (max-width:249px) {
 	img.logo-50 {
 		display: block;
