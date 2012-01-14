@@ -10,5 +10,6 @@
     <feature name="opera:share-cookies" required="false"/>
 	<access origin="http://wowraider.ru" subdomains="true"/>
 	<preference name="feed" value="news" />
-	<preference name="interval" value="3600" />
+	<preference name="update_interval" value="180" />
+	<preference name="frequency_change" value="5" />
 </widget>

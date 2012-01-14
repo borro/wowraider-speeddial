@@ -1,12 +1,17 @@
 window.addEventListener('load', function() {
 	//стандартные настройки
 	var feeds = (widget.preferences.feed || 'news').split(','),
-		feedIntreval = widget.preferences.interval || 3600,
+		update_interval = widget.preferences.update_interval || 180,
+		frequency_change = widget.preferences.frequency_change || 5,
 		content = {},
 		feeds_i = 0,
 		intervalIdStorage = null,
+		intervalIdUpdate = null,
 		intervalIdRotate = null;
 
+	/**
+	 * Смена лент
+	 */
 	function changeContent() {
 		if (feeds_i >= feeds.length) feeds_i = 0;
 		var i = feeds_i++;
@@ -17,6 +22,9 @@ window.addEventListener('load', function() {
 		}
 	}
 
+	/**
+	 * получение контента
+	 */
 	function getContent()
 	{
 		ajaxGet('http://wowraider.ru/common/api.cdiml?data='+feeds.join(','), function (data) {
@@ -36,24 +44,40 @@ window.addEventListener('load', function() {
 					$('#online_status '+(data[name].data[0].online ? '.online' : '.offline')).show();
 				}
 			}
-			feeds_i = 0;
-			changeContent();
 		});
 	}
 
 	//следим за изменение настроек
 	addEventListener('storage', function () {
 		feeds = (widget.preferences.feed || 'news').split(',');
-		feedIntreval = widget.preferences.interval || 3600;
+		update_interval = widget.preferences.update_interval || 180;
+		frequency_change = widget.preferences.frequency_change || 5;
+		
+		/**
+		 * получаем контент с задержкой, чтобы если пользваотель кликнул
+		 * несколько подряд галочек, не запустилось обновление преждевременно
+		 */
 		if (intervalIdStorage) clearTimeout(intervalIdStorage);
 		intervalIdStorage = setTimeout(function() {
 			getContent();
-			if (intervalIdRotate) clearInterval(intervalIdRotate);
-			intervalIdRotate = setInterval(changeContent, 3000);
+			feeds_i = 0;
+			changeContent();
 		}, 500);
+		
+		//меняем интервал получения данных
+		if (intervalIdUpdate) clearInterval(intervalIdUpdate);
+		intervalIdUpdate = setInterval(getContent, update_interval*1000);
+		
+		//меняем интервал смены лент
+		if (intervalIdRotate) clearInterval(intervalIdRotate);
+		intervalIdRotate = setInterval(changeContent, frequency_change*1000);
+		
 	}, false);
-
-	//меняем контент каждые 10 секунд
-	intervalIdRotate = setInterval(changeContent, 3000);
+	
+	//получаем данные каждые update_interval секунд
+	intervalIdUpdate = setInterval(getContent, update_interval*1000);
+	//меняем контент каждые frequency_change секунд
+	intervalIdRotate = setInterval(changeContent, frequency_change*1000);
 	getContent();
+	changeContent();
 });
