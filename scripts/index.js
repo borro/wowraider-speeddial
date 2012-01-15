@@ -1,6 +1,6 @@
 window.addEventListener('load', function() {
 	//стандартные настройки
-	var feeds = (widget.preferences.feed || 'news').split(','),
+	var feeds = parseConfFeeds(widget.preferences.feed || 'news'),
 		update_interval = widget.preferences.update_interval || 180,
 		frequency_change = widget.preferences.frequency_change || 5,
 		content = {},
@@ -52,12 +52,12 @@ window.addEventListener('load', function() {
 
 	//следим за изменение настроек
 	addEventListener('storage', function () {
-		feeds = (widget.preferences.feed || 'news').split(',');
+		feeds = parseConfFeeds(widget.preferences.feed || 'news');
 		update_interval = widget.preferences.update_interval || 180;
 		frequency_change = widget.preferences.frequency_change || 5;
 		
 		/**
-		 * получаем контент с задержкой, чтобы если пользваотель кликнул
+		 * получаем контент с задержкой, чтобы если пользователь кликнул
 		 * несколько подряд галочек, не запустилось обновление преждевременно
 		 */
 		if (intervalIdStorage) clearTimeout(intervalIdStorage);

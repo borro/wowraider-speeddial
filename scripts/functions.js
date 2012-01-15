@@ -71,6 +71,18 @@ function initElements(type, data)
 		.append('<h1>'+data.title+'</h1>');
 }
 
+function parseConfFeeds(feeds)
+{
+	if (feeds.indexOf('blues:ru:bluestart') !== -1) {
+		feeds = feeds.replace(/blues:ru,/, '');
+	}
+	if (feeds.indexOf('blues:en:bluestart') !== -1) {
+		feeds = feeds.replace(/blues:en,/, '');
+	}
+	console.log(feeds);
+	return feeds.split(',');
+}
+
 function parseFeeds(type, data) {
 	var body = initElements(type, data), ul = $('<ul></ul>');
 	if (data.data.length) {
