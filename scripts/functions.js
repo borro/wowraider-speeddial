@@ -79,7 +79,6 @@ function parseConfFeeds(feeds)
 	if (feeds.indexOf('blues:en:bluestart') !== -1) {
 		feeds = feeds.replace(/blues:en,/, '');
 	}
-	console.log(feeds);
 	return feeds.split(',');
 }
 

@@ -27,7 +27,7 @@ window.addEventListener('load', function() {
 	 */
 	function getContent()
 	{
-		ajaxGet('http://wowraider.ru/common/api.cdiml?data='+feeds.join(','), function (data) {
+		ajaxGet('http://wowraider.ru/api?data='+feeds.join(','), function (data) {
 			var hideMember = true;
 			data = $.parseJSON(data);
 			content = {};
