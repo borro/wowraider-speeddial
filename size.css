@@ -9,28 +9,20 @@ img.logo, img.logo-100, img.logo-80, img.logo-50 {
 @media only screen and (min-width:50px) and (max-width:119px) {
 	* {
 		display: none;
-		margin: 0;
-		padding: 0;
 	}
 	html, body {
 		background: #022f8c url('images/logo-50.png') center center no-repeat;
 		display: block;
-		margin: 0;
-		padding: 0;
 	}
 		
 }
 
 @media only screen and (min-width:120px) and (max-width:160px) {
 	* {
-		margin: 0;
-		padding: 0;
 		display: none;
 	}
 	html, body {
 		background: #022f8c url('images/logo-80.png') center center no-repeat;
-		margin: 0;
-		padding: 0;
 		display: block;
 	}
 		
@@ -49,6 +41,28 @@ img.logo, img.logo-100, img.logo-80, img.logo-50 {
 	}
 	div.member {
 		padding-right: 2px;
+	}
+	
+	.output {
+		padding-left: 2px;
+	}
+	h1 {
+		padding: 0;
+	}
+	
+}
+@media only screen and (min-width:161px) and (max-width:310px) {
+	.glf .title, .slf .title {
+		display: none;
+	}
+}
+
+@media only screen and (min-width:311px) {
+	.glf .content div, .slf .content div {
+		width: 130px;
+	}
+	.glf .content div span {
+		 white-space: nowrpap;
 	}
 }
 

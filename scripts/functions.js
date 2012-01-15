@@ -87,8 +87,9 @@ function parseLF(type, data) {
 	var body = initElements(type, data), div = $('<div class="content"></div>');
 	for (var i = 0, maxi = data.data.length; i < maxi; i++) {
 		div.append(
-			'<div><img src="/images/wowicons/class/'+data.data[i].classid+'.gif" alt="'+data.data[i].title+'">'
-			+ ' — <span style="color:#'+data.data[i].classcolor+';">'+data.data[i].number+'</span></div>'
+			'<div><img src="/images/wowicons/class/'+data.data[i].classid+'.gif" alt="'+data.data[i].title+'"> '
+			+ '<span class="title" style="color:#'+data.data[i].classcolor+';">'+data.data[i].title+'</span> '
+			+ '<span style="color:#'+data.data[i].classcolor+';">'+data.data[i].number+'</span></div>'
 		);
 	}
 	return body.append(div);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" id="http://wowraider.ru/splash.cdiml" defaultlocale="ru" viewmodes="minimized" version="0.2a">
+<widget xmlns="http://www.w3.org/ns/widgets" id="http://wowraider.ru/splash.cdiml" defaultlocale="ru" viewmodes="minimized" version="1.0">
 	<name short="WowRaider Speeddial">WoW Raider Speed Dial Extension</name>
-	<description>Расширение позволяет следить за последними новостями, комментариями и прочим с сайта http://wowraider.ru/</description>
+	<description>Расширение позволяет следить за последними новостями, комментариями и прочим на сайте http://wowraider.ru/</description>
 	<author href="http://aggardo.ru/">Borro</author>
 	<icon src="images/icon.png"/>
     <feature name="opera:speeddial" required="true">

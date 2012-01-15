@@ -57,7 +57,7 @@ div.member {
 }
 
 h1 {
-	padding-left: 5px;
+	padding-left: 3px;
 	font-size: 1.4em;
 }
 
@@ -83,6 +83,12 @@ h1 {
 	float: left;
 	font-weight: bold;
 	width: 55px;
+}
+
+.glf .content div img {
+	vertical-align: middle;
+	float: left;
+	margin-right: 5px;
 }
 
 div.search {
