@@ -61,9 +61,6 @@ img.logo, img.logo-100, img.logo-80, img.logo-50 {
 	.glf .content div, .slf .content div {
 		width: 130px;
 	}
-	.glf .content div span {
-		 white-space: nowrpap;
-	}
 }
 
 @media only screen and (min-width:250px) and (max-width:299px) {
