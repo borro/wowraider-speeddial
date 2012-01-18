@@ -20,8 +20,19 @@ window.addEventListener('load', function() {
 		var i = feeds_i++;
 		if (feeds[i] == 'member') changeContent();
 		if (content[feeds[i]] !== undefined) {
-			$('output').html(content[feeds[i]].data);
-			setSpeedDial(content[feeds[i]].title, content[feeds[i]].url);
+			var old_feed = $('output').find('div:first');
+			var new_feed = content[feeds[i]].data;
+			$('output').append(new_feed.css({opacity: 0}));
+			if (old_feed.length) {
+				old_feed.animate({opacity: 0.0}, 700, function(){
+					$(this).remove();
+					setSpeedDial(content[feeds[i]].title, content[feeds[i]].url);
+					new_feed.animate({opacity: 1.0}, 700);
+				});
+			} else {
+				setSpeedDial(content[feeds[i]].title, content[feeds[i]].url);
+				new_feed.animate({opacity: 1.0}, 700);
+			}
 		}
 	}
 
