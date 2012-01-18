@@ -20,8 +20,11 @@ window.addEventListener('load', function() {
 		var i = feeds_i++;
 		if (feeds[i] == 'member') changeContent();
 		if (content[feeds[i]] !== undefined) {
-			$('output').html(content[feeds[i]].data);
-			setSpeedDial(content[feeds[i]].title, content[feeds[i]].url);
+			$('div.output').animate({opacity: 0.0}, 700, function(){
+				setSpeedDial(content[feeds[i]].title, content[feeds[i]].url);
+				$('output', this).html(content[feeds[i]].data);
+				$(this).animate({opacity: 1.0}, 700);
+			});
 		}
 	}
 
