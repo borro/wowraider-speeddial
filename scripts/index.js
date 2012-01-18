@@ -1,13 +1,16 @@
 window.addEventListener('load', function() {
 	//стандартные настройки
-	var feeds = parseConfFeeds(widget.preferences.feed || 'news'),
-		update_interval = widget.preferences.update_interval || 180,
-		frequency_change = widget.preferences.frequency_change || 5,
-		content = {},
-		feeds_i = 0,
+	var feeds             = parseConfFeeds(widget.preferences.feed || 'news'),
+		update_interval   = widget.preferences.update_interval || 180,
+		frequency_change  = widget.preferences.frequency_change || 5,
+		content           = {},
+		feeds_i           = 0,
 		intervalIdStorage = null,
-		intervalIdUpdate = null,
-		intervalIdRotate = null;
+		intervalIdUpdate  = null,
+		intervalIdRotate  = null;
+
+	//чтобы jQuery не тупила с кросс-доменными запросами
+	$.ajaxSetup({crossDomain: false});
 
 	/**
 	 * Смена лент
@@ -27,9 +30,8 @@ window.addEventListener('load', function() {
 	 */
 	function getContent()
 	{
-		ajaxGet('http://wowraider.ru/api?data='+feeds.join(','), function (data) {
+		$.getJSON('http://wowraider.ru/api', {data: feeds.join(',')}, function (data) {
 			var hideMember = true;
-			data = $.parseJSON(data);
 			content = {};
 			for (var name in data) if (data.hasOwnProperty(name)) {
 				if (feedsParsers[name]) {
@@ -52,8 +54,8 @@ window.addEventListener('load', function() {
 
 	//следим за изменение настроек
 	addEventListener('storage', function () {
-		feeds = parseConfFeeds(widget.preferences.feed || 'news');
-		update_interval = widget.preferences.update_interval || 180;
+		feeds            = parseConfFeeds(widget.preferences.feed || 'news');
+		update_interval  = widget.preferences.update_interval || 180;
 		frequency_change = widget.preferences.frequency_change || 5;
 		
 		/**

@@ -1,3 +1,8 @@
+/**
+ * Устанавливает заголовок окошка и куда он будет вести
+ * @param title
+ * @param url
+ */
 function setSpeedDial(title, url)
 {
 	if (opera.contexts.speeddial) {
@@ -6,18 +11,25 @@ function setSpeedDial(title, url)
 	}
 }
 
-function ajaxGet(url, successCallback)
+/**
+ * Небольшой костыль, чтобы не было 4х синих постов
+ * @param feeds
+ * @return array
+ */
+function parseConfFeeds(feeds)
 {
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', url, true);
-	xhr.onreadystatechange = function() {
-		if (this.readyState === 4) {
-			successCallback(this.responseText);
-		}
-	};
-	xhr.send(null);
+	if (feeds.indexOf('blues:ru:bluestart') !== -1) {
+		feeds = feeds.replace(/blues:ru,/, '');
+	}
+	if (feeds.indexOf('blues:en:bluestart') !== -1) {
+		feeds = feeds.replace(/blues:en,/, '');
+	}
+	return feeds.split(',');
 }
 
+/**
+ * Набор парсеров каналов
+ */
 var feedsParsers = {
 	news: function (data) {
 		return parseFeeds('news', data);
@@ -54,8 +66,7 @@ var feedsParsers = {
 		for (var i = 0, maxi = data.data.length; i < maxi; i++) {
 			table.append('<tr><td>'+data.data[i].title+'</td><td>'+data.data[i].number+'</td></tr>');
 		}
-		body.append(table);
-		return body;
+		return body.append(table);
 	},
 	glf: function (data) {
 		return parseLF('glf', data);
@@ -65,23 +76,24 @@ var feedsParsers = {
 	}
 };
 
+/**
+ * Инициализируем контейнер
+ * @param type
+ * @param data
+ * @return jQuery
+ */
 function initElements(type, data)
 {
 	return $('<div class="'+type.split(':').join(' ')+'"></div>')
 		.append('<h1>'+data.title+'</h1>');
 }
 
-function parseConfFeeds(feeds)
-{
-	if (feeds.indexOf('blues:ru:bluestart') !== -1) {
-		feeds = feeds.replace(/blues:ru,/, '');
-	}
-	if (feeds.indexOf('blues:en:bluestart') !== -1) {
-		feeds = feeds.replace(/blues:en,/, '');
-	}
-	return feeds.split(',');
-}
-
+/**
+ * Типовой парсер новостей
+ * @param type
+ * @param data
+ * @return jQuery
+ */
 function parseFeeds(type, data) {
 	var body = initElements(type, data), ul = $('<ul></ul>');
 	if (data.data.length) {
@@ -94,6 +106,12 @@ function parseFeeds(type, data) {
 	return body.append(ul);
 }
 
+/**
+ * Типовой парсер поиска гильдий
+ * @param type
+ * @param data
+ * @return jQuery
+ */
 function parseLF(type, data) {
 	var body = initElements(type, data), div = $('<div class="content"></div>');
 	for (var i = 0, maxi = data.data.length; i < maxi; i++) {
