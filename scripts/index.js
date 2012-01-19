@@ -3,6 +3,7 @@ window.addEventListener('load', function() {
 	var feeds             = parseConfFeeds(widget.preferences.feed || 'news'),
 		update_interval   = widget.preferences.update_interval || 180,
 		frequency_change  = widget.preferences.frequency_change || 5,
+		smooth_change     = widget.preferences.smooth_change || 1,
 		content           = {},
 		feeds_i           = 0,
 		intervalIdStorage = null,
@@ -20,11 +21,17 @@ window.addEventListener('load', function() {
 		var i = feeds_i++;
 		if (feeds[i] == 'member') changeContent();
 		if (content[feeds[i]] !== undefined) {
-			$('div.output').animate({opacity: 0.0}, 700, function(){
+			if (smooth_change == 1) {
+				$('div.output').animate({opacity: 0.0}, 700, function(){
+					setSpeedDial(content[feeds[i]].title, content[feeds[i]].url);
+					$('output', this).html(content[feeds[i]].data);
+					$(this).animate({opacity: 1.0}, 700);
+				});
+			} else {
 				setSpeedDial(content[feeds[i]].title, content[feeds[i]].url);
-				$('output', this).html(content[feeds[i]].data);
-				$(this).animate({opacity: 1.0}, 700);
-			});
+				$('output').html(content[feeds[i]].data);
+
+			}
 		}
 	}
 
@@ -60,6 +67,7 @@ window.addEventListener('load', function() {
 		feeds            = parseConfFeeds(widget.preferences.feed || 'news');
 		update_interval  = widget.preferences.update_interval || 180;
 		frequency_change = widget.preferences.frequency_change || 5;
+		smooth_change    = widget.preferences.smooth_change || 1;
 		
 		/**
 		 * получаем контент с задержкой, чтобы если пользователь кликнул
