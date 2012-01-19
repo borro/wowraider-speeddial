@@ -84,8 +84,16 @@
 			</select>
 		</p>
 	</fieldset>
+
+	<h3>Плавная смена лент</h3>
+	<fieldset>
+		<p>
+			<input type="checkbox" name="smooth_change" id="smooth_change" value="1">
+			<label for="smooth_change">Плавная смена лент</label>
+		</p>
+	</fieldset>
 	
-	<h3>Частота смены отображения выбранных лент</h3>
+	<h3>Время отображения выбранных лент</h3>
 	<fieldset>
 		<p>
 			<select name="frequency_change" id="frequency_change">
@@ -169,6 +177,8 @@ addEventListener('DOMContentLoaded', function() {
 					return tmp.join( glue );
 				} else if (n == name && checkable[t] === true && e.checked) {
 					return e.value;
+				} else if (n == name && checkable[t] === true && !e.checked) {
+					return 0;
 				}
 			}
 		).join(glue);
