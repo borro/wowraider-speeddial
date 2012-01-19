@@ -38,8 +38,9 @@ window.addEventListener('load', function() {
 	/**
 	 * получение контента
 	 */
-	function getContent()
+	function getContent(changeContentFlag)
 	{
+		changeContentFlag = changeContentFlag || false;
 		$.getJSON('http://wowraider.ru/api', {data: feeds.join(',')}, function (data) {
 			var hideMember = true;
 			content = {};
@@ -59,6 +60,9 @@ window.addEventListener('load', function() {
 				}
 			}
 			if (hideMember) $('.member').hide();
+			if (changeContentFlag == true) {
+				changeContent();
+			}
 		});
 	}
 
@@ -75,9 +79,8 @@ window.addEventListener('load', function() {
 		 */
 		if (intervalIdStorage) clearTimeout(intervalIdStorage);
 		intervalIdStorage = setTimeout(function() {
-			getContent();
 			feeds_i = 0;
-			changeContent();
+			getContent(true);
 		}, 500);
 		
 		//меняем интервал получения данных
@@ -94,7 +97,5 @@ window.addEventListener('load', function() {
 	intervalIdUpdate = setInterval(getContent, update_interval*1000);
 	//меняем контент каждые frequency_change секунд
 	intervalIdRotate = setInterval(changeContent, frequency_change*1000);
-	getContent();
-	
-	setTimeout(changeContent, 1000);
+	getContent(true);
 });
