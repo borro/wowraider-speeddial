@@ -98,4 +98,8 @@ window.addEventListener('load', function() {
 	//меняем контент каждые frequency_change секунд
 	intervalIdRotate = setInterval(changeContent, frequency_change*1000);
 	getContent(true);
+	
+	if (window.debug_extention) {
+		debug_extention();
+	}
 });
