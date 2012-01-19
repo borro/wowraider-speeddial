@@ -67,6 +67,10 @@ fieldset label {
   margin-left: 20px;
 }
 
+fieldset label.inline {
+	margin-left: 0;
+}
+
 fieldset *:disabled {
   opacity: 0.5;
 }
