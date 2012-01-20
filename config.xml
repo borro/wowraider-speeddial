@@ -13,4 +13,5 @@
 	<preference name="update_interval" value="180" />
 	<preference name="frequency_change" value="5" />
 	<preference name="smooth_change" value="1" />
+	<preference name="change_url" value="1" />
 </widget>

@@ -111,12 +111,12 @@ var tests_list = {
 	change_feeds_interval: function(callback) {
 		var test_result = {name: 'Смена лент в зависимости от интервала', result: 'pass', description: []},
 			intervalValueFail = 0,
-			count = 0,
+			feeds_count = parseConfFeeds(widget.preferences.feed).length,
+			iteration = 0,
 			tmp_content = $('output').html(),
 			start_time = (new Date()).getTime();
 
 		var checkIntervalId = setInterval(function(){
-			console.log((new Date()).getTime() - start_time);
 			if (tmp_content != $('output').html() && tmp_content != '') {
 				var time = (new Date()).getTime() - start_time;
 				if (!(- 100 <= time && time <=  widget.preferences.frequency_change*1000 + 100)) {
@@ -124,6 +124,7 @@ var tests_list = {
 				} else {
 					tmp_content = $('output').html();
 					start_time = (new Date()).getTime();
+					++iteration;
 				}
 			} else if (tmp_content == '') {
 				start_time = (new Date()).getTime();
@@ -138,9 +139,12 @@ var tests_list = {
 				clearInterval(checkIntervalId);
 				callback(test_result);
 			}
+			
+			if (iteration >= feeds_count*2) {
+				clearInterval(checkIntervalId);
+				callback(test_result);
+			}
 
 		}, 100);
-
-
 	}
 };

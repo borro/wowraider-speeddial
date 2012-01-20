@@ -4,6 +4,7 @@ window.addEventListener('load', function() {
 		update_interval   = widget.preferences.update_interval || 180,
 		frequency_change  = widget.preferences.frequency_change || 5,
 		smooth_change     = widget.preferences.smooth_change || 1,
+		change_url        = widget.preferences.change_url || 1,
 		content           = {},
 		feeds_i           = 0,
 		intervalIdStorage = null,
@@ -23,12 +24,12 @@ window.addEventListener('load', function() {
 		if (content[feeds[i]] !== undefined) {
 			if (smooth_change == 1) {
 				$('div.output').animate({opacity: 0.0}, 700, function(){
-					setSpeedDial(content[feeds[i]].title, content[feeds[i]].url);
+					setSpeedDial(content[feeds[i]].title, change_url == 1 ? content[feeds[i]].url : 'http://wowraider.ru');
 					$('output', this).html(content[feeds[i]].data);
 					$(this).animate({opacity: 1.0}, 700);
 				});
 			} else {
-				setSpeedDial(content[feeds[i]].title, content[feeds[i]].url);
+				setSpeedDial(content[feeds[i]].title, change_url == 1 ? content[feeds[i]].url : 'http://wowraider.ru');
 				$('output').html(content[feeds[i]].data);
 
 			}
@@ -72,6 +73,7 @@ window.addEventListener('load', function() {
 		update_interval  = widget.preferences.update_interval || 180;
 		frequency_change = widget.preferences.frequency_change || 5;
 		smooth_change    = widget.preferences.smooth_change || 1;
+		change_url        = widget.preferences.change_url || 1;
 		
 		/**
 		 * получаем контент с задержкой, чтобы если пользователь кликнул
