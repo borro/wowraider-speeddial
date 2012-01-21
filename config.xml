@@ -9,9 +9,10 @@
     </feature>
     <feature name="opera:share-cookies" required="false"/>
 	<access origin="http://wowraider.ru" subdomains="true"/>
-	<preference name="feed" value="news,blues:ru,blues:ru:bluestart,blues:en,blues:en:bluestart,blogs,posts,comments,streams,questions,member,plf,glf,slf" />
+	<preference name="feed" value="news,blues:ru,blues:ru:bluestart,blues:en,blues:en:bluestart,blogs,posts,comments,streams,questions,plf,glf,slf" />
 	<preference name="update_interval" value="180" />
 	<preference name="frequency_change" value="5" />
 	<preference name="smooth_change" value="1" />
 	<preference name="change_url" value="1" />
+	<preference name="member" value="1" />
 </widget>

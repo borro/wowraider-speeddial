@@ -53,38 +53,29 @@
 			<label for="checkbox7">Вопросы</label>
 		</p>
 		<p>
-			<input name="feed" id="checkbox8" value="member" type="checkbox">
-			<label for="checkbox8">Личный кабинет</label>
+			<input name="feed" id="checkbox8" value="plf" type="checkbox">
+			<label for="checkbox8">Игроки ищут</label>
 		</p>
 		<p>
-			<input name="feed" id="checkbox9" value="plf" type="checkbox">
-			<label for="checkbox9">Игроки ищут</label>
+			<input name="feed" id="checkbox9" value="glf" type="checkbox">
+			<label for="checkbox9">Гильдии ищут</label>
 		</p>
 		<p>
-			<input name="feed" id="checkbox10" value="glf" type="checkbox">
-			<label for="checkbox10">Гильдии ищут</label>
-		</p>
-		<p>
-			<input name="feed" id="checkbox11" value="slf" type="checkbox">
-			<label for="checkbox11">Статики ищут</label>
+			<input name="feed" id="checkbox10" value="slf" type="checkbox">
+			<label for="checkbox10">Статики ищут</label>
 		</p>
 	</fieldset>
 	
-	<h3>Интервал обновления данных</h3>
+	<h3>Личный кабинет</h3>
 	<fieldset>
 		<p>
-			<select name="update_interval" id="update_interval">
-				<option value="30">Раз в 30 секунд</option>
-				<option value="60">Раз в минуту</option>
-				<option value="180">Раз в 3 минуты</option>
-				<option value="300">Раз в 5 минут</option>
-				<option value="600">Раз в 10 минут</option>
-				<option value="1200">Раз в 20 минут</option>
-				<option value="1800">Раз в полчаса</option>
-			</select>
+			<input type="radio" name="member" id="member_on" value="1">
+			<label for="member_on" class="inline">Включить</label>
+			<input type="radio" name="member" id="member_off" value="0">
+			<label for="member_off" class="inline">Выключить</label>
 		</p>
 	</fieldset>
-
+	
 	<h3>Смена URL в зависимости от ленты</h3>
 	<fieldset>
 		<p>
@@ -116,6 +107,21 @@
 				<option value="5">Раз в 5 секунд</option>
 				<option value="10">Раз в 10 секунд</option>
 				<option value="15">Раз в 15 секунд</option>
+			</select>
+		</p>
+	</fieldset>
+	
+	<h3>Интервал обновления данных</h3>
+	<fieldset>
+		<p>
+			<select name="update_interval" id="update_interval">
+				<option value="30">Раз в 30 секунд</option>
+				<option value="60">Раз в минуту</option>
+				<option value="180">Раз в 3 минуты</option>
+				<option value="300">Раз в 5 минут</option>
+				<option value="600">Раз в 10 минут</option>
+				<option value="1200">Раз в 20 минут</option>
+				<option value="1800">Раз в полчаса</option>
 			</select>
 		</p>
 	</fieldset>

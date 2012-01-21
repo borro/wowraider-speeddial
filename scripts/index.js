@@ -5,6 +5,7 @@ window.addEventListener('load', function() {
 		frequency_change  = widget.preferences.frequency_change || 5,
 		smooth_change     = widget.preferences.smooth_change || 1,
 		change_url        = widget.preferences.change_url || 1,
+		member            = widget.preferences.member || 1,
 		content           = {},
 		feeds_i           = 0,
 		intervalIdStorage = null,
@@ -24,12 +25,12 @@ window.addEventListener('load', function() {
 		if (content[feeds[i]] !== undefined) {
 			if (smooth_change == 1) {
 				$('div.output').animate({opacity: 0.0}, 700, function(){
-					setSpeedDial(content[feeds[i]].title, change_url == 1 ? content[feeds[i]].url : 'http://wowraider.ru');
+					setSpeedDial(content[feeds[i]].title, change_url == 1 ? content[feeds[i]].url : 'http://wowraider.ru/splash.cdiml');
 					$('output', this).html(content[feeds[i]].data);
 					$(this).animate({opacity: 1.0}, 700);
 				});
 			} else {
-				setSpeedDial(content[feeds[i]].title, change_url == 1 ? content[feeds[i]].url : 'http://wowraider.ru');
+				setSpeedDial(content[feeds[i]].title, change_url == 1 ? content[feeds[i]].url : 'http://wowraider.ru/splash.cdiml');
 				$('output').html(content[feeds[i]].data);
 
 			}
@@ -42,7 +43,7 @@ window.addEventListener('load', function() {
 	function getContent(changeContentFlag)
 	{
 		changeContentFlag = changeContentFlag || false;
-		$.getJSON('http://wowraider.ru/api', {data: feeds.join(',')}, function (data) {
+		$.getJSON('http://wowraider.ru/api', {data: feeds.join(',') + (member == 1 ? ',member' : '')}, function (data) {
 			var hideMember = true;
 			content = {};
 			for (var name in data) if (data.hasOwnProperty(name)) {
@@ -52,7 +53,7 @@ window.addEventListener('load', function() {
 						url: data[name].url,
 						data: feedsParsers[name](data[name])
 					};
-				} else if (name == 'member'){
+				} else if (name == 'member' && member == 1){
 					hideMember = false;
 					$('.member').show();
 					$('#newmessages').text(data[name].data[0].newmessages);
@@ -60,7 +61,7 @@ window.addEventListener('load', function() {
 					$('#online_status '+(data[name].data[0].online ? '.online' : '.offline')).show();
 				}
 			}
-			if (hideMember) $('.member').hide();
+			if (hideMember || member == 0) $('.member').hide();
 			if (changeContentFlag == true) {
 				changeContent();
 			}
@@ -73,7 +74,8 @@ window.addEventListener('load', function() {
 		update_interval  = widget.preferences.update_interval || 180;
 		frequency_change = widget.preferences.frequency_change || 5;
 		smooth_change    = widget.preferences.smooth_change || 1;
-		change_url        = widget.preferences.change_url || 1;
+		change_url       = widget.preferences.change_url || 1;
+		member           = widget.preferences.member || 1;
 		
 		/**
 		 * получаем контент с задержкой, чтобы если пользователь кликнул
