@@ -11,7 +11,7 @@ html {
 /* Use display:table and display:table-cell
 so that we can use vertical-align:middle */
 body {
-	background: #022f8c;
+	background: #000;
 	font-family: Calibri, sans-serif;
 	color: #fff;
 	display: table;
@@ -31,12 +31,13 @@ div.gradient
 	position: absolute;
 	bottom: 0px;
 	height: 20px;
-	background-image: -o-linear-gradient(top,  rgba(255, 255, 255, 0),  rgba(2, 47, 140, 1));
+	background-image: -o-linear-gradient(top,  rgba(255, 255, 255, 0),  rgba(0, 0, 0, 1));
 }
 
 div.logo {
 	float: right;
 	text-align: right;
+	margin: 5px;
 }
 
 div.member {

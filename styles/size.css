@@ -11,7 +11,7 @@ img.logo, img.logo-100, img.logo-80, img.logo-50 {
 		display: none;
 	}
 	html, body {
-		background: #022f8c url('/images/logo-50.png') center center no-repeat;
+		background: #000 url('/images/logo-50.png') center center no-repeat;
 		display: block;
 	}
 		
@@ -22,7 +22,7 @@ img.logo, img.logo-100, img.logo-80, img.logo-50 {
 		display: none;
 	}
 	html, body {
-		background: #022f8c url('/images/logo-80.png') center center no-repeat;
+		background: #000 url('/images/logo-80.png') center center no-repeat;
 		display: block;
 	}
 		
