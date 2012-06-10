@@ -13,7 +13,7 @@ so that we can use vertical-align:middle */
 body {
 	background: #000;
 	font-family: Calibri, sans-serif;
-	color: #fff;
+	color: #ccc;
 	display: table;
 	height: 100%;
 	width: 100%;
@@ -21,7 +21,7 @@ body {
 }
 
 a {
-	color: #fff;
+	color: #ccc;
 	text-decoration: none;
 }
 
