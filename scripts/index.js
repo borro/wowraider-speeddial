@@ -19,11 +19,11 @@ window.addEventListener('load', function() {
 	 * Смена лент
 	 */
 	function changeContent() {
-		if (feeds_i >= feeds.length) feeds_i = 0;
+        if (feeds_i >= feeds.length) feeds_i = 0;
 		var i = feeds_i++;
 		if (feeds[i] == 'member') changeContent();
 		if (content[feeds[i]] !== undefined) {
-			if (smooth_change == 1) {
+			if (smooth_change == 1 && feeds.length > 1) {
 				$('div.output').animate({opacity: 0.0}, 700, function(){
 					setSpeedDial(content[feeds[i]].title, change_url == 1 ? content[feeds[i]].url : 'http://wowraider.ru/splash.cdiml');
 					$('output', this).html(content[feeds[i]].data);
