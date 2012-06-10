@@ -19,7 +19,7 @@ window.addEventListener('load', function() {
 	 * Смена лент
 	 */
 	function changeContent() {
-        if (feeds_i >= feeds.length) feeds_i = 0;
+		if (feeds_i >= feeds.length) feeds_i = 0;
 		var i = feeds_i++;
 		if (feeds[i] == 'member') changeContent();
 		if (content[feeds[i]] !== undefined) {
@@ -69,32 +69,36 @@ window.addEventListener('load', function() {
 	}
 
 	//следим за изменение настроек
+	var storage_timeout = null;
 	addEventListener('storage', function () {
-		feeds            = parseConfFeeds(widget.preferences.feed || 'news');
-		update_interval  = widget.preferences.update_interval || 180;
-		frequency_change = widget.preferences.frequency_change || 5;
-		smooth_change    = widget.preferences.smooth_change || 1;
-		change_url       = widget.preferences.change_url || 1;
-		member           = widget.preferences.member || 1;
-		
-		/**
-		 * получаем контент с задержкой, чтобы если пользователь кликнул
-		 * несколько подряд галочек, не запустилось обновление преждевременно
-		 */
-		if (intervalIdStorage) clearTimeout(intervalIdStorage);
-		intervalIdStorage = setTimeout(function() {
-			feeds_i = 0;
-			getContent(true);
-		}, 500);
-		
-		//меняем интервал получения данных
-		if (intervalIdUpdate) clearInterval(intervalIdUpdate);
-		intervalIdUpdate = setInterval(getContent, update_interval*1000);
-		
-		//меняем интервал смены лент
-		if (intervalIdRotate) clearInterval(intervalIdRotate);
-		intervalIdRotate = setInterval(changeContent, frequency_change*1000);
-		
+		clearTimeout(storage_timeout);
+			storage_timeout = setTimeout(function() {
+			feeds            = parseConfFeeds(widget.preferences.feed || 'news');
+			update_interval  = widget.preferences.update_interval || 180;
+			frequency_change = widget.preferences.frequency_change || 5;
+			smooth_change    = widget.preferences.smooth_change || 1;
+			change_url       = widget.preferences.change_url || 1;
+			member           = widget.preferences.member || 1;
+	
+			/**
+			 * получаем контент с задержкой, чтобы если пользователь кликнул
+			 * несколько подряд галочек, не запустилось обновление преждевременно
+			 */
+			if (intervalIdStorage) clearTimeout(intervalIdStorage);
+			intervalIdStorage = setTimeout(function() {
+				feeds_i = 0;
+				getContent(true);
+			}, 500);
+	
+			//меняем интервал получения данных
+			if (intervalIdUpdate) clearInterval(intervalIdUpdate);
+			intervalIdUpdate = setInterval(getContent, update_interval*1000);
+	
+			//меняем интервал смены лент
+			if (intervalIdRotate) clearInterval(intervalIdRotate);
+			intervalIdRotate = setInterval(changeContent, frequency_change*1000);
+		}, (widget.preferences.frequency_change || 5) * 1000);
+
 	}, false);
 	
 	//получаем данные каждые update_interval секунд
