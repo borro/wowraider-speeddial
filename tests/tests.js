@@ -2,7 +2,7 @@ var tests_list = {
 	correctness_feeds: function(callback) {
 		var test_result = {name: 'Корректность получения всех лент', result:'pass', description: []};
 		$.ajax({
-			url: 'http://wowraider.ru/api',
+			url: 'http://wowraider.net/api',
 			dataType: 'json',
 			data: {data: 'news,blues:ru,blues:ru:bluestart,blues:en,blues:en:bluestart,blogs,posts,comments,streams,questions,member,plf,glf,slf'},
 			success: function (data, textStatus, jqXHR) {

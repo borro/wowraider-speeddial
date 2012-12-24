@@ -25,12 +25,12 @@ window.addEventListener('load', function() {
 		if (content[feeds[i]] !== undefined) {
 			if (smooth_change == 1 && feeds.length > 1) {
 				$('div.output').animate({opacity: 0.0}, 700, function(){
-					setSpeedDial(content[feeds[i]].title, change_url == 1 ? content[feeds[i]].url : 'http://wowraider.ru/splash.cdiml');
+					setSpeedDial(content[feeds[i]].title, change_url == 1 ? content[feeds[i]].url : 'http://wowraider.net/splash.cdiml');
 					$('output', this).html(content[feeds[i]].data);
 					$(this).animate({opacity: 1.0}, 700);
 				});
 			} else {
-				setSpeedDial(content[feeds[i]].title, change_url == 1 ? content[feeds[i]].url : 'http://wowraider.ru/splash.cdiml');
+				setSpeedDial(content[feeds[i]].title, change_url == 1 ? content[feeds[i]].url : 'http://wowraider.net/splash.cdiml');
 				$('output').html(content[feeds[i]].data);
 
 			}
@@ -43,7 +43,7 @@ window.addEventListener('load', function() {
 	function getContent(changeContentFlag)
 	{
 		changeContentFlag = changeContentFlag || false;
-		$.getJSON('http://wowraider.ru/api', {data: feeds.join(',') + (member == 1 ? ',member' : '')}, function (data) {
+		$.getJSON('http://wowraider.net/api', {data: feeds.join(',') + (member == 1 ? ',member' : '')}, function (data) {
 			var hideMember = true;
 			content = {};
 			for (var name in data) if (data.hasOwnProperty(name)) {
