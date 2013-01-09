@@ -1,2 +1,2 @@
-wowraider-speeddial
+WoWRaider SpeedDial
 ===================
