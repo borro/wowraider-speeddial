@@ -19,5 +19,6 @@ if ($ret === true) {
 	}
 	$oex->close();
 } else {
-	echo "ZipArchive: can not open ($name)".$ret;
+	echo "ZipArchive: can not open ($oexName) ", $ret;
+	exit(1);
 }
